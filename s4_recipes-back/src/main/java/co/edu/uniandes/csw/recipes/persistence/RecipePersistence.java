@@ -31,6 +31,17 @@ public class RecipePersistence {
         return em.find(RecipeEntity.class, id);
     }
     
-    //TODO método crear de recipe
+   /**
+     * Método para persisitir la entidad en la base de datos.
+     *
+     * @param recipeEntity objeto receta que se creará en la base de datos
+     * @return devuelve la entidad creada con un id dado por la base de datos.
+     */
+    public RecipeEntity create(RecipeEntity recipeEntity) {
+        LOGGER.log(Level.INFO, "Creando una receta nuevo");
+        em.persist(recipeEntity);
+        LOGGER.log(Level.INFO, "Receta creado");
+        return recipeEntity;
+    }
 
 }
