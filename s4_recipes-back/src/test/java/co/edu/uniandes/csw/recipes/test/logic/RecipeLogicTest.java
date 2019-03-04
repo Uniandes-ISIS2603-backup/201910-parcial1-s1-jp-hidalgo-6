@@ -134,6 +134,7 @@ public class RecipeLogicTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+        Assert.assertTrue(entity.getIngredientes().size()>0);
     }
     
     @Test (expected = BusinessLogicException.class)

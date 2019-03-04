@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.recipes.entities;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,6 +22,8 @@ public class RecipeEntity extends BaseEntity {
     public RecipeEntity(){
     
     }
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<IngredienteEntity> ingredientes;
     /**
      * @return the name
      */
@@ -31,6 +36,14 @@ public class RecipeEntity extends BaseEntity {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<IngredienteEntity> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(List<IngredienteEntity> ingredientes) {
+        this.ingredientes = ingredientes;
     }
 
     /**

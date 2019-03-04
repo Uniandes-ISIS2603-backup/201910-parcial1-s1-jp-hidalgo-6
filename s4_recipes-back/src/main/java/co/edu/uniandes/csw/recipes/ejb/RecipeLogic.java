@@ -41,6 +41,10 @@ public class RecipeLogic {
         {
             throw new BusinessLogicException("la descripción es invalida");
         }
+        if(recipeEntity.getIngredientes()==null||recipeEntity.getIngredientes().size()<1)
+        {
+            throw new BusinessLogicException("tiene que tener almenos un ingrediente");
+        }
         persistence.create(recipeEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la receta");
         return recipeEntity;
