@@ -27,11 +27,23 @@ public class RecipeLogic {
         return persistence.find(id);
     }
 
-     public RecipeEntity createRecipe(RecipeEntity RecipeEntity) throws BusinessLogicException {
+     public RecipeEntity createRecipe(RecipeEntity recipeEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la receta");
-        persistence.create(RecipeEntity);
+        if(recipeEntity.getName()==null||recipeEntity.getName().length()>30)
+        {
+            throw new BusinessLogicException("El nombre es invalido");
+        }
+        if(persistence.findByName(recipeEntity.getName())!=null)
+        {
+            throw new BusinessLogicException("Ya existe una receta con el mismo nombre  ");
+        }
+        if(recipeEntity.getDescription()==null||recipeEntity.getDescription().length()>150)
+        {
+            throw new BusinessLogicException("la descripción es invalida");
+        }
+        persistence.create(recipeEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la receta");
-        return RecipeEntity;
+        return recipeEntity;
     }
 
 
